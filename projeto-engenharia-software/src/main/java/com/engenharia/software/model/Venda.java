@@ -14,12 +14,54 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //atributos
+    private String titulo;
+    private int qtdAssentos;
+    private double total;
+    
+    //setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    public void setQtdAssentos(int qtdAssentos) {
+        this.qtdAssentos = qtdAssentos;
+    }
+    
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    //getters
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    
+    public String getTitulo() {
+        return this.titulo;
+    }
+    
+    public int getQtdAssentos() {
+        return this.qtdAssentos;
+    }
+    
+    public double getTotal() {
+        return this.total;
+    }
+    
+    //outros metodos
+    @Override
+    public String toString() {
+        return 
+                String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %2.f%n",
+                        getId(),
+                        getQtdAssentos(),
+                        getTotal()
+                );
     }
 
     @Override
@@ -41,10 +83,4 @@ public class Venda implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "com.engenharia.software.model.Venda[ id=" + id + " ]";
-    }
-    
 }
