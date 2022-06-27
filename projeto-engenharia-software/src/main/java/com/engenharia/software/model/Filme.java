@@ -13,15 +13,52 @@ public class Filme implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
+    
+    //atributos
+    private String titulo;
+    private int qtdAssentos;
+    private double precoIngresso;
+    
+    //setters
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    public void setQtdAssentos(int qtdAssentos) {
+        this.qtdAssentos = qtdAssentos;
+    }
+    
+    public void setPrecoIngresso(double precoIngresso) {
+        this.precoIngresso = precoIngresso;
+    }
+    
+    //getters
+    public Long getId() {
+        return id;
+    }
+    
+    public String getTitulo() {
+        return titulo;
+    }
+    
+    public int getQtdAssentos() {
+        return qtdAssentos;
+    }
 
+    public double getPrecoIngresso() {
+        return precoIngresso;
+    }
+    
+    //outros metodos
+    @Override
+    public String toString() {
+        return "com.engenharia.software.model.Filme[ id=" + id + " ]";
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -41,10 +78,4 @@ public class Filme implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "com.engenharia.software.model.Filme[ id=" + id + " ]";
-    }
-    
 }
