@@ -56,7 +56,13 @@ public class Filme implements Serializable {
     //outros metodos
     @Override
     public String toString() {
-        return "com.engenharia.software.model.Filme[ id=" + id + " ]";
+        return 
+                String.format("ID: %d%nTitulo: %s%nQtd. Assentos: %d%nPreco Ingresso: %.2f%n",
+                            getId(),
+                            getTitulo(),
+                            getQtdAssentos(),
+                            getPrecoIngresso()
+                        );
     }
     
     @Override
