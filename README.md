@@ -12,3 +12,8 @@ SO: Ubuntu 20.04
 <ul>
  <li>AlgaWorks - JPA: <a href="https://youtu.be/MGWJbaYdy-Y"> Clique aqui para assistir. </a></li>
 </ul>
+
+## Outros Downloads
+<ul>
+ <li>SQLITE JDBC: <a href="https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.36.0.3/"> Clique aqui para fazer o download. </a></li>
+</ul>
