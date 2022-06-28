@@ -39,6 +39,15 @@ public class FilmeTest {
          assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_QTD_ASSENTOS_NEGATIVA));
     }
     
+    @Test
+    public void testarSetPrecoIngressoNegativo() {
+        Filme filme = new Filme();
+        
+         IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> filme.setPrecoIngresso(-1));
+      
+         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_PRECO_INGRESSO_NEGATIVO));
+    }
+    
     //testes dos getters
     @Test
     public void testarGetTituloFilme() {
