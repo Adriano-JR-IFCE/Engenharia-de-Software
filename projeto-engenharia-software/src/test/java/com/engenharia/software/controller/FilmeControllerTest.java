@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package com.engenharia.software.controller;
 
 import com.engenharia.software.model.Filme;
@@ -9,10 +5,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author lobonegro
- */
 public class FilmeControllerTest {
     
     public FilmeControllerTest() {
@@ -82,9 +74,7 @@ public class FilmeControllerTest {
         filmeController.salvarFilme(filme3);
         
         List<Filme> filmes = filmeController.todosFilmes();
-        
-        filmeController.fechar();
-        
+                
         assertEquals(filmes.size(), 3);
     }
     
@@ -111,5 +101,53 @@ public class FilmeControllerTest {
         Filme filmeRetornado = filmeController.filme(filme.getId());
         
         assertEquals(filmeRetornado.getId(), filme.getId());
+    }
+    
+    @Test
+    public void testarRemoverFilme() {
+        FilmeController filmeController = new FilmeController();
+        
+        Filme filme = new Filme();
+        filme.setTitulo("test");
+        filme.setQtdAssentos(1);
+        filme.setPrecoIngresso(1.00);
+        
+        filmeController.salvarFilme(filme);
+        
+        Long id = filme.getId();
+        
+        filme = filmeController.filme(id);
+        
+        filmeController.removerFilme(filme);
+        
+        filme = filmeController.filme(id);
+                
+        assertNull(filme);
+    }
+    
+    @Test
+    public void testarAtualizarFilme() {
+        FilmeController filmeController = new FilmeController();
+        
+        Filme filme = new Filme();
+        filme.setTitulo("test");
+        filme.setQtdAssentos(1);
+        filme.setPrecoIngresso(1.00);
+        
+        filmeController.salvarFilme(filme);
+        
+        filme = filmeController.filme(filme.getId());
+        
+        filme.setTitulo("teste");
+        filme.setQtdAssentos(2);
+        filme.setPrecoIngresso(2.00);
+        
+        filmeController.atualizarFilme(filme);
+        
+        assertEquals(filme.getTitulo(), "teste");
+        assertEquals(filme.getQtdAssentos(), 2);
+        assertEquals(filme.getPrecoIngresso(), 2.00);
+        
+        filmeController.removerFilme(filme);
     }
 }
