@@ -98,5 +98,11 @@ public class FilmeTest {
     }
     
     //testes dos outros metodos
-    
+    public void testarToStringFilmeNaoPreenchido() {
+        Filme filme = new Filme();
+        
+        String textoEsperado = String.format("ID: null%nTitulo: null%nQtd. Assentos: 0%nPreco Ingresso: 0.00%n");
+        
+        assertEquals(filme.toString(), textoEsperado);
+    }
 }
