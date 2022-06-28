@@ -96,4 +96,20 @@ public class VendaTest {
         assertEquals(venda.getQtdAssentos(), 0);
     }
     
+    @Test
+    public void testarGetTotalPreenchido() {
+        Venda venda = new Venda();
+        
+        venda.setTotal(10.00);
+        
+        assertEquals(venda.getTotal(), 10.00);
+    }
+    
+    @Test
+    public void testarGetTotalNaoPreenchido() {
+        Venda venda = new Venda();
+                
+        assertEquals(venda.getQtdAssentos(), 0.00);
+    }
+    
 }
