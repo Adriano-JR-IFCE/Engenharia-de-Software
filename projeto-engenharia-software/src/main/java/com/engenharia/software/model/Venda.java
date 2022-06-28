@@ -1,11 +1,13 @@
 package com.engenharia.software.model;
 
+import java.util.Date;
 import com.engenharia.software.auxiliar.Mensagens;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 @Entity
 public class Venda implements Serializable {
@@ -19,12 +21,14 @@ public class Venda implements Serializable {
     private String titulo;
     private int qtdAssentos;
     private double total;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataVenda;
     
     //setters
     public void setId(Long id) {
         this.id = id;
     }
-    
+        
     public void setTitulo(String titulo) {
         if (titulo.isEmpty())
             throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_TITULO_EM_BRANCO);
@@ -43,6 +47,11 @@ public class Venda implements Serializable {
         this.total = total;
     }
     
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    
     //getters
     public Long getId() {
         return id;
@@ -58,6 +67,10 @@ public class Venda implements Serializable {
     
     public double getTotal() {
         return this.total;
+    }
+    
+    public Date getDataVenda() {
+        return this.dataVenda;
     }
     
     //outros metodos
