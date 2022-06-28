@@ -50,6 +50,8 @@ public class VendaControllerTest {
         vendaController.salvarVenda(venda);
         
         assertNotNull(venda.getId());
+        
+        vendaController.removerVenda(venda);
     }
     
     @Test
@@ -108,6 +110,8 @@ public class VendaControllerTest {
         Venda vendaRetornada = vendaController.venda(venda.getId());
         
         assertEquals(vendaRetornada.getId(), venda.getId());
+        
+        vendaController.removerVenda(venda);
     }
     
     @Test
