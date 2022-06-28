@@ -69,4 +69,10 @@ public class FilmeController {
             gerenciador.merge(filme);
         gerenciador.getTransaction().commit();
     }
+    
+    public void removerFilme(Filme filme) {
+        gerenciador.getTransaction().begin();
+            gerenciador.remove(filme);
+        gerenciador.getTransaction().commit();
+    }
 }
