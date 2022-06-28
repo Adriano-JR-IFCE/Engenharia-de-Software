@@ -9,15 +9,16 @@ public class FilmeTest {
     
     public FilmeTest() {
     }
-
-    //testes do setters
+    
+    //teste do construtor
     @Test
     public void testarConstrutorFilme() {
         Filme filme = new Filme();
         
         assertNotNull(filme);
     }
-    
+
+    //testes do setters
     @Test
     public void testarSetTituloEmBranco() {
         Filme filme = new Filme();
@@ -30,6 +31,14 @@ public class FilmeTest {
     }
     
     //testes dos getters
+    @Test
+    public void testarGetTituloFilme() {
+        Filme filme = new Filme();
+        
+        filme.setTitulo("teste");
+        
+        assertEquals(filme.getTitulo(), "teste");
+    }
     
     //testes dos outros metodos
     
