@@ -51,7 +51,6 @@ public class Venda implements Serializable {
         this.dataVenda = dataVenda;
     }
 
-    
     //getters
     public Long getId() {
         return id;

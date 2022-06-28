@@ -24,7 +24,7 @@ public class FilmeControllerTest {
     }
     
     @Test
-    public void testarSeConstrutorCriaFabricaGerenciado() {
+    public void testarSeConstrutorCriaFabricaGerenciador() {
         FilmeController filmeController = new FilmeController();
         
         assertNotNull(filmeController.getFabrica());
@@ -37,7 +37,7 @@ public class FilmeControllerTest {
         
         filmeController.fechar();
         
-        assertNull(filmeController.getFabrica());
-        assertNull(filmeController.getGerenciador());
+        assertFalse(filmeController.getFabrica().isOpen());
+        assertFalse(filmeController.getGerenciador().isOpen());
     }
 }
