@@ -5,6 +5,7 @@
 package com.engenharia.software.controller;
 
 import com.engenharia.software.model.Filme;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,5 +56,35 @@ public class FilmeControllerTest {
         filmeController.salvarFilme(filme);
         
         assertNotNull(filme.getId());
+    }
+    
+    @Test
+    public void testarTodosFilmes() {
+        Filme filme1 = new Filme();
+        filme1.setTitulo("teste");
+        filme1.setQtdAssentos(30);
+        filme1.setPrecoIngresso(10.00);
+        
+        Filme filme2 = new Filme();
+        filme2.setTitulo("teste");
+        filme2.setQtdAssentos(30);
+        filme2.setPrecoIngresso(10.00);
+        
+        Filme filme3 = new Filme();
+        filme3.setTitulo("teste");
+        filme3.setQtdAssentos(30);
+        filme3.setPrecoIngresso(10.00);
+        
+        FilmeController filmeController = new FilmeController();
+        
+        filmeController.salvarFilme(filme1);
+        filmeController.salvarFilme(filme2);
+        filmeController.salvarFilme(filme3);
+        
+        List<Filme> filmes = filmeController.todosFilmes();
+        
+        filmeController.fechar();
+        
+        assertEquals(filmes.size(), 3);
     }
 }
