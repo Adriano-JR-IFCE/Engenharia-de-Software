@@ -57,4 +57,10 @@ public class FilmeController {
         
         return filmes;
     }
+    
+    public Filme filme(Long id) {
+        Filme filme = gerenciador.find(Filme.class, id);
+       
+        return filme;
+    }
 }
