@@ -1,6 +1,8 @@
 package com.engenharia.software.model;
 
 import com.engenharia.software.auxiliar.Mensagens;
+import java.util.Date;
+import java.text.DateFormat;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,6 +65,13 @@ public class VendaTest {
         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TOTAL_NEGATIVO_OU_NULO));
     }
     
+    @Test
+    public void testarSetDataVenda() {
+        Venda venda = new Venda();
+        
+        venda.setDataVenda(new Date());
+    }
+    
     //getters
     @Test
     public void testarGetTituloPreenchido() {
@@ -110,6 +119,24 @@ public class VendaTest {
         Venda venda = new Venda();
                 
         assertEquals(venda.getQtdAssentos(), 0.00);
+    }
+    
+    @Test
+    public void testarGetDataVendaPreenchida() {
+        Venda venda = new Venda();
+        
+        venda.setDataVenda(new Date());
+        
+        DateFormat formato = DateFormat.getDateInstance(DateFormat.SHORT);
+        
+        assertEquals(formato.format(venda.getDataVenda()), formato.format(new Date()));
+    }
+    
+    @Test
+    public void testarGetDataVendaNaoPreenchida() {
+        Venda venda = new Venda();
+        
+        assertNull(venda.getDataVenda());
     }
     
     //outros metodos
