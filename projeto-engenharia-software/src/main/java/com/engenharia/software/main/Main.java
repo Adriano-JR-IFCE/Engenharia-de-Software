@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.engenharia.software.main;
 
-/**
- *
- * @author lobonegro
- */
+import com.engenharia.software.gui.JFrameHome;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Inicializando projeto...");
+        //abre a tela home
+        new JFrameHome().setVisible(true);
     }
 }
