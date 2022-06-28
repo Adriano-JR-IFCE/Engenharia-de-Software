@@ -19,7 +19,7 @@ public class FilmeTest {
     }
     
     @Test
-    public void testarSetTituloStringVazia() {
+    public void testarSetTituloEmBranco() {
         Filme filme = new Filme();
         
         String titulo = "";
