@@ -63,4 +63,10 @@ public class FilmeController {
        
         return filme;
     }
+    
+    public void atualizarFilme(Filme filme) {
+        gerenciador.getTransaction().begin();
+            gerenciador.merge(filme);
+        gerenciador.getTransaction().commit();
+    }
 }
