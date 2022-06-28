@@ -1,9 +1,11 @@
 package com.engenharia.software.controller;
 
 import com.engenharia.software.model.Filme;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class FilmeController {
     //atributos - jpa
@@ -45,5 +47,14 @@ public class FilmeController {
         gerenciador.getTransaction().begin();
             gerenciador.persist(filme);
         gerenciador.getTransaction().commit();
+    }
+    
+    public List<Filme> todosFilmes() {
+        String jpql = "select f from Filme f";
+        
+        TypedQuery typedQuery = gerenciador.createQuery(jpql, Filme.class);
+        List<Filme> filmes = typedQuery.getResultList();
+        
+        return filmes;
     }
 }
