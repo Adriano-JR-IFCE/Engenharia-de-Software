@@ -2,11 +2,12 @@
  Repositório com o objetivo de manter acesso ao versionamento do projeto proposto pela professora Cynthia Pinheiro.
 
 ## Softwares do Ambiente de Desenvolvimento
-<pre>
-IDE: Netbeans IDE 13
-JDK:  OpenJDK 17.0.3
-SO: Ubuntu 20.04
-</pre>
+<ul>
+ <li>IDE: Netbeans IDE 13</li>
+ <li>JDK:  OpenJDK 17.0.3</li>
+ <li>SO: Ubuntu 20.04</li>
+ <li>API de testes: JUNIT 5</li>
+</ul>
 
 ## Conteudos Pesquisados - Extras
 <ul>
