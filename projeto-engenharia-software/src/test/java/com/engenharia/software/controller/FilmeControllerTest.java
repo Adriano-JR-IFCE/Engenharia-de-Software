@@ -87,4 +87,29 @@ public class FilmeControllerTest {
         
         assertEquals(filmes.size(), 3);
     }
+    
+    @Test
+    public void testarFilmeIdInvalido() {
+        FilmeController filmeController = new FilmeController();
+        
+        Filme filme = filmeController.filme(-1l);
+        
+        assertNull(filme);
+    }
+    
+    @Test
+    public void testarFilmeId() {
+        FilmeController filmeController = new FilmeController();
+        
+        Filme filme = new Filme();
+        filme.setTitulo("teste");
+        filme.setQtdAssentos(30);
+        filme.setPrecoIngresso(10.00);
+        
+        filmeController.salvarFilme(filme);
+        
+        Filme filmeRetornado = filmeController.filme(filme.getId());
+        
+        assertEquals(filmeRetornado.getId(), filme.getId());
+    }
 }
