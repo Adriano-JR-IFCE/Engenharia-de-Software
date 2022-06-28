@@ -1,5 +1,6 @@
 package com.engenharia.software.model;
 
+import com.engenharia.software.auxiliar.Mensagens;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,14 +26,20 @@ public class Venda implements Serializable {
     }
     
     public void setTitulo(String titulo) {
+        if (titulo.isEmpty())
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_TITULO_EM_BRANCO);
         this.titulo = titulo;
     }
     
     public void setQtdAssentos(int qtdAssentos) {
+        if (qtdAssentos <= 0)
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_QTD_ASSENTOS_NEGATIVA_OU_NULA);
         this.qtdAssentos = qtdAssentos;
     }
     
     public void setTotal(double total) {
+        if (total <= 0)
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_TOTAL_NEGATIVO_OU_NULO);
         this.total = total;
     }
     
