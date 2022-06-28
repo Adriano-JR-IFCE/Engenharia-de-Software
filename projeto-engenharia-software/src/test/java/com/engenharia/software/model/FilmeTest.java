@@ -81,6 +81,13 @@ public class FilmeTest {
         assertEquals(filme.getQtdAssentos(), 0);
     }
     
+    @Test
+    public void testarGetPrecoIngressoSemPreenchimentoPrecoIngresso() {
+        Filme filme = new Filme();
+        
+        assertEquals(filme.getPrecoIngresso(), 0);
+    }
+    
     //testes dos outros metodos
     
 }
