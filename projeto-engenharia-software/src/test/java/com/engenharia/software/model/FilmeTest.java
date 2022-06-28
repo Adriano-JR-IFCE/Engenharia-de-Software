@@ -40,6 +40,13 @@ public class FilmeTest {
         assertEquals(filme.getTitulo(), "teste");
     }
     
+    @Test
+    public void testarGetTituloNull() {
+        Filme filme = new Filme();
+        
+        assertNull(filme.getTitulo());
+    }
+    
     //testes dos outros metodos
     
 }
