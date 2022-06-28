@@ -57,8 +57,9 @@ public class Venda implements Serializable {
     @Override
     public String toString() {
         return 
-                String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %2.f%n",
+                String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %.2f%n",
                         getId(),
+                        getTitulo(),
                         getQtdAssentos(),
                         getTotal()
                 );
