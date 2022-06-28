@@ -4,6 +4,7 @@
  */
 package com.engenharia.software.controller;
 
+import com.engenharia.software.model.Filme;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,5 +40,20 @@ public class FilmeControllerTest {
         
         assertFalse(filmeController.getFabrica().isOpen());
         assertFalse(filmeController.getGerenciador().isOpen());
+    }
+    
+    @Test
+    public void testarSalvarFilme() {
+        Filme filme = new Filme();
+        
+        filme.setTitulo("teste");
+        filme.setQtdAssentos(30);
+        filme.setPrecoIngresso(10.00);
+        
+        FilmeController filmeController = new FilmeController();
+        
+        filmeController.salvarFilme(filme);
+        
+        assertNotNull(filme.getId());
     }
 }
