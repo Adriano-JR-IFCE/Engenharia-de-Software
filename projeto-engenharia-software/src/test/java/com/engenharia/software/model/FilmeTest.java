@@ -88,6 +88,15 @@ public class FilmeTest {
         assertEquals(filme.getPrecoIngresso(), 0);
     }
     
+    @Test
+    public void testarGetPrecoIngresso() {
+        Filme filme = new Filme();
+        
+        filme.setPrecoIngresso(10.00);
+        
+        assertEquals(filme.getPrecoIngresso(), 10.00);
+    }
+    
     //testes dos outros metodos
     
 }
