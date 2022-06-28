@@ -18,7 +18,7 @@ public class FilmeTest {
         assertNotNull(filme);
     }
 
-    //testes do setters
+    //testes do setters    
     @Test
     public void testarSetTituloEmBranco() {
         Filme filme = new Filme();
@@ -54,6 +54,22 @@ public class FilmeTest {
         Filme filme = new Filme();
         
         assertNull(filme.getTitulo());
+    }
+    
+    @Test
+    public void testarGetQtdAssentos() {
+        Filme filme = new Filme();
+        
+        filme.setQtdAssentos(10);
+        
+        assertEquals(filme.getQtdAssentos(), 10);
+    }
+    
+    @Test
+    public void testarGetQtdAssentosSemPreenchimentoQtdAssentos() {
+        Filme filme = new Filme();
+        
+        assertEquals(filme.getQtdAssentos(), 0);
     }
     
     //testes dos outros metodos

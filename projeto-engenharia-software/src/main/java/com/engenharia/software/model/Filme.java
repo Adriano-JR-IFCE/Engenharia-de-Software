@@ -35,6 +35,8 @@ public class Filme implements Serializable {
     }
     
     public void setQtdAssentos(int qtdAssentos) {
+        if (qtdAssentos < 0)
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_QTD_ASSENTOS_NEGATIVA);
         this.qtdAssentos = qtdAssentos;
     }
     
