@@ -39,7 +39,7 @@ public class JFrameHome extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnFilmes = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(265, 124));
@@ -52,10 +52,10 @@ public class JFrameHome extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Vendas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVendas.setText("Vendas");
+        btnVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVendasActionPerformed(evt);
             }
         });
 
@@ -67,7 +67,7 @@ public class JFrameHome extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(btnFilmes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnVendas)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -76,7 +76,7 @@ public class JFrameHome extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFilmes)
-                    .addComponent(jButton2))
+                    .addComponent(btnVendas))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -98,9 +98,10 @@ public class JFrameHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
+       new JFrameCRUDVenda().setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmesActionPerformed
         new JFrameCRUDFilme().setVisible(true);
@@ -144,7 +145,7 @@ public class JFrameHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilmes;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVendas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
