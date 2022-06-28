@@ -62,4 +62,22 @@ public class VendaTest {
         
         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TOTAL_NEGATIVO_OU_NULO));
     }
+    
+    //getters
+    @Test
+    public void testarGetTituloPreenchido() {
+        Venda venda = new Venda();
+        
+        venda.setTitulo("teste");
+        
+        assertEquals(venda.getTitulo(), "teste");
+    }
+    
+    @Test
+    public void testarGetTituloNaoPreenchido() {
+        Venda venda = new Venda();
+                
+        assertNull(venda.getTitulo());
+    }
+    
 }
