@@ -1,5 +1,7 @@
 package com.engenharia.software.model;
 
+import com.engenharia.software.auxiliar.Mensagens;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,13 +20,17 @@ public class Filme implements Serializable {
     private String titulo;
     private int qtdAssentos;
     private double precoIngresso;
-    
+       
     //setters
     public void setId(Long id) {
         this.id = id;
     }
     
     public void setTitulo(String titulo) {
+        //caso o titulo seja em branco
+        if (titulo.isEmpty())
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_TITULO_EM_BRANCO);
+        
         this.titulo = titulo;
     }
     
