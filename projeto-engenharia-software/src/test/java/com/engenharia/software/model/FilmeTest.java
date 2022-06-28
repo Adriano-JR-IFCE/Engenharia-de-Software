@@ -30,6 +30,15 @@ public class FilmeTest {
          assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TITULO_EM_BRANCO));
     }
     
+    @Test
+    public void testarSetQtdAssentosNegativo() {
+        Filme filme = new Filme();
+        
+         IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> filme.setQtdAssentos(-1));
+      
+         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_QTD_ASSENTOS_NEGATIVA));
+    }
+    
     //testes dos getters
     @Test
     public void testarGetTituloFilme() {
