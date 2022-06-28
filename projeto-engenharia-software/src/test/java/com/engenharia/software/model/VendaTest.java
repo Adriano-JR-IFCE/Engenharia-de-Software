@@ -1,5 +1,6 @@
 package com.engenharia.software.model;
 
+import com.engenharia.software.auxiliar.Mensagens;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,4 +17,13 @@ public class VendaTest {
         assertNotNull(venda);
     }
     
+    //setters
+    @Test
+    public void testarSetTituloEmBranco() {
+        Venda venda = new Venda();
+        
+        IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> venda.setTitulo(""));
+        
+        assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TITULO_EM_BRANCO));
+    }
 }
