@@ -38,17 +38,17 @@ public class JFrameHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnFilmes = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(265, 124));
         setResizable(false);
 
-        jButton1.setText("Filmes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFilmes.setText("Filmes");
+        btnFilmes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFilmesActionPerformed(evt);
             }
         });
 
@@ -65,7 +65,7 @@ public class JFrameHome extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                .addComponent(btnFilmes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -75,7 +75,7 @@ public class JFrameHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnFilmes)
                     .addComponent(jButton2))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
@@ -102,9 +102,10 @@ public class JFrameHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilmesActionPerformed
+        new JFrameCRUDFilme().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnFilmesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,7 +143,7 @@ public class JFrameHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnFilmes;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
