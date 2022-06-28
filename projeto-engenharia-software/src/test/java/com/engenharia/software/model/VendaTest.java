@@ -80,4 +80,20 @@ public class VendaTest {
         assertNull(venda.getTitulo());
     }
     
+    @Test
+    public void testarGetQtdAssentosPreenchido() {
+        Venda venda = new Venda();
+        
+        venda.setQtdAssentos(10);
+        
+        assertEquals(venda.getQtdAssentos(), 10);
+    }
+    
+    @Test
+    public void testarGetQtdAssentosNaoPreenchido() {
+        Venda venda = new Venda();
+                
+        assertEquals(venda.getQtdAssentos(), 0);
+    }
+    
 }
