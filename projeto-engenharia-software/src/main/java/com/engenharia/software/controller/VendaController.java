@@ -58,7 +58,7 @@ public class VendaController {
         return vendas;
     }
     
-    public Venda filme(Long id) {
+    public Venda venda(Long id) {
         Venda  venda = gerenciador.find(Venda.class, id);
        
         return venda;
