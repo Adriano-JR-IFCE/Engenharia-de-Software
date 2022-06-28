@@ -53,4 +53,13 @@ public class VendaTest {
         
         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TOTAL_NEGATIVO_OU_NULO));
     }
+    
+    @Test
+    public void testarSetTotalNegativo() {
+        Venda venda = new Venda();
+        
+        IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> venda.setTotal(-1));
+        
+        assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_TOTAL_NEGATIVO_OU_NULO));
+    }
 }
