@@ -105,4 +105,17 @@ public class FilmeTest {
         
         assertEquals(filme.toString(), textoEsperado);
     }
+    
+    public void testarToString() {
+        Filme filme = new Filme();
+        
+        filme.setId(1l);
+        filme.setTitulo("teste");
+        filme.setQtdAssentos(1);
+        filme.setPrecoIngresso(1.00);
+        
+        String textoEsperado = String.format("ID: 1%nTitulo: teste%nQtd. Assentos: 1%nPreco Ingresso: 1.00%n");
+        
+        assertEquals(filme.toString(), textoEsperado);
+    }
 }
