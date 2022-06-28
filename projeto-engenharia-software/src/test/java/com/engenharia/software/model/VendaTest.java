@@ -112,4 +112,25 @@ public class VendaTest {
         assertEquals(venda.getQtdAssentos(), 0.00);
     }
     
+    //outros metodos
+    public void testarToStringPreenchido() {
+        Venda venda = new Venda();
+        
+        venda.setId(1l);
+        venda.setTitulo("teste");
+        venda.setQtdAssentos(1);
+        venda.setTotal(1);
+        
+        String textoEsperado = String.format("ID: 1%nFilme: teste%nQtd. Assentos: 1%nTotal: 1.00%n");
+        
+        assertEquals(venda.toString(), textoEsperado);
+    }
+    
+    public void testarToStringNaoPreenchido() {
+        Venda venda = new Venda();
+        
+        String textoEsperado = String.format("ID: null%nFilme: null%nQtd. Assentos: 0%nTotal: 0.00%n");
+        
+        assertEquals(venda.toString(), textoEsperado);
+    }
 }
