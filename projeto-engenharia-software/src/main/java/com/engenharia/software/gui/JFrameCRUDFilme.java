@@ -6,6 +6,7 @@ package com.engenharia.software.gui;
 
 import com.engenharia.software.controller.FilmeController;
 import com.engenharia.software.model.Filme;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -60,6 +61,12 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         comboTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Identificador", "Titulo", "Qtd. Assentos", "Preco Ingresso" }));
+
+        inputPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputPesquisaFocusLost(evt);
+            }
+        });
 
         btnPequisar.setText("PESQUISAR");
         btnPequisar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,13 +189,12 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
 
     private void btnPequisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPequisarActionPerformed
         int indiceOpcaoEscolhida = comboTipoPesquisa.getSelectedIndex();
+        String entradaInputPesquisa = inputPesquisa.getText();
         
         switch (indiceOpcaoEscolhida) {
             //identificador
             case 0:
                 System.out.println("[LOG] indice da opcao escolhida: " + indiceOpcaoEscolhida);
-                
-                String entradaInputPesquisa = inputPesquisa.getText();
                 
                 try {
                    Long id = Long.parseLong(entradaInputPesquisa);
@@ -198,8 +204,12 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
 
                   System.out.println("[LOG] Filme encontrado:\n" + filme);
                 
-                  //CODIGO AQUI
+                  ArrayList<Filme> filmes = new ArrayList();
                   
+                  if (filme != null)
+                      filmes.add(filme);
+                      
+                  carregarDadosTabelaFilmes(filmes);                
                 } catch (Exception exception) {
                    JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -209,8 +219,28 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPequisarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        new JDialogCadastrarFilme(this, true).setVisible(true);        
+        new JDialogCadastrarFilme(this, true).setVisible(true);
+
+        //carrega todos os filmes para a tabela
+        try {
+            carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void inputPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPesquisaFocusLost
+        String conteudoInputPesquisa = inputPesquisa.getText();
+        
+        if (conteudoInputPesquisa.isEmpty()) {
+            //carrega todos os filmes para a tabela
+            try {
+                carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_inputPesquisaFocusLost
 
     /**
      * @param args the command line arguments
