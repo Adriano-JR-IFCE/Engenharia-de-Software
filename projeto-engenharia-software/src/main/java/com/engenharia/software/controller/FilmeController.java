@@ -86,6 +86,24 @@ public class FilmeController {
         return filmes;
     }
     
+    public List<Filme> todosFilmesComAssentosDisponiveis() {
+        String jpql = "select f from Filme f where f.qtdAssentos > 0";
+        
+        TypedQuery typedQuery = gerenciador.createQuery(jpql, Filme.class);
+        List<Filme> filmes = typedQuery.getResultList();
+        
+        return filmes;
+    }
+    
+    public List<Filme> todosFilmesComAssentosDisponiveis(String titulo) {
+        String jpql = "select f from Filme f where f.qtdAssentos > 0 and f.titulo LIKE '%" + titulo + "%'";
+        
+        TypedQuery typedQuery = gerenciador.createQuery(jpql, Filme.class);
+        List<Filme> filmes = typedQuery.getResultList();
+        
+        return filmes;
+    }
+    
     public Filme filme(Long id) {
         if (id <= 0)
             throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_ID_INVALIDO);
