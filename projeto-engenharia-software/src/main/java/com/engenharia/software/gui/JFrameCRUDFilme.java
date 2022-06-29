@@ -6,7 +6,9 @@ package com.engenharia.software.gui;
 
 import com.engenharia.software.controller.FilmeController;
 import com.engenharia.software.model.Filme;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,13 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
         
         //apresentar a tela no centro
         setLocationRelativeTo(null);
+        
+        //carrega todos os filmes para a tabela
+        try {
+            carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -249,4 +258,21 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableFilmes;
     // End of variables declaration//GEN-END:variables
+
+    //outros metodos
+    private void carregarDadosTabelaFilmes(List<Filme> filmes) {
+        DefaultTableModel tabela = (DefaultTableModel) tableFilmes.getModel();
+        tabela.setRowCount(0);
+        
+        for (Filme filme : filmes) {
+            Object[] linha = { 
+                filme.getId(),
+                filme.getTitulo(),
+                filme.getQtdAssentos(),
+                filme.getPrecoIngresso()
+            };
+            
+            tabela.addRow(linha);
+        }
+    }
 }
