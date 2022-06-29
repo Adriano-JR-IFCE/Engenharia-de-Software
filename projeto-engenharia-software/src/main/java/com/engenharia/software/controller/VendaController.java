@@ -1,6 +1,8 @@
 package com.engenharia.software.controller;
 
 import com.engenharia.software.model.Venda;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,6 +53,15 @@ public class VendaController {
     
     public List<Venda> todasVendas() {
         String jpql = "select v from Venda v";
+        
+        TypedQuery typedQuery = gerenciador.createQuery(jpql, Venda.class);
+        List<Venda> vendas = typedQuery.getResultList();
+        
+        return vendas;
+    }
+    
+    public List<Venda> todasVendas(String dataEmTexto) {
+        String jpql = "select v from Venda v where v.dataVenda = '" + dataEmTexto + "'";
         
         TypedQuery typedQuery = gerenciador.createQuery(jpql, Venda.class);
         List<Venda> vendas = typedQuery.getResultList();

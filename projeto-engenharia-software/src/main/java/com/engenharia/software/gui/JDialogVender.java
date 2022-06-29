@@ -219,6 +219,8 @@ public class JDialogVender extends javax.swing.JDialog {
                   filmeController.atualizarFilme(filme);
                   
                   JOptionPane.showMessageDialog(this, "Venda feita com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                  
+                  dispose();
               } else {
                   JOptionPane.showMessageDialog(this, "Quantidade de ingressos invalida!", "Alerta", JOptionPane.INFORMATION_MESSAGE);
               }
