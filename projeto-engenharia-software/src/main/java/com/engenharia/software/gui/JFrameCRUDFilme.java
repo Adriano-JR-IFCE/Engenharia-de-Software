@@ -58,7 +58,7 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Filmes");
-        setPreferredSize(new java.awt.Dimension(500, 400));
+        setPreferredSize(new java.awt.Dimension(521, 402));
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
