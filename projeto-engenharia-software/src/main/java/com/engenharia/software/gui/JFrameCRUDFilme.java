@@ -190,12 +190,11 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
     private void btnPequisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPequisarActionPerformed
         int indiceOpcaoEscolhida = comboTipoPesquisa.getSelectedIndex();
         String entradaInputPesquisa = inputPesquisa.getText();
+        System.out.println("[LOG] indice da opcao escolhida: " + indiceOpcaoEscolhida);
         
         switch (indiceOpcaoEscolhida) {
             //identificador
             case 0:
-                System.out.println("[LOG] indice da opcao escolhida: " + indiceOpcaoEscolhida);
-                
                 try {
                    Long id = Long.parseLong(entradaInputPesquisa);
                    
@@ -214,6 +213,14 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 
+                break;
+             //titulo
+            case 1:
+                try {
+                    carregarDadosTabelaFilmes(new FilmeController().todosFilmes(entradaInputPesquisa));
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
         }
     }//GEN-LAST:event_btnPequisarActionPerformed
