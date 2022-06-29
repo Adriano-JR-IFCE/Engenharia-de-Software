@@ -1,5 +1,6 @@
 package com.engenharia.software.controller;
 
+import com.engenharia.software.auxiliar.Mensagens;
 import com.engenharia.software.model.Filme;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -81,10 +82,10 @@ public class FilmeControllerTest {
     @Test
     public void testarFilmeIdInvalido() {
         FilmeController filmeController = new FilmeController();
-        
-        Filme filme = filmeController.filme(-1l);
-        
-        assertNull(filme);
+                
+        IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> filmeController.filme(-1l));
+    
+        assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_ID_INVALIDO));
     }
     
     @Test
