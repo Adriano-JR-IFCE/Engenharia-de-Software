@@ -42,7 +42,7 @@ public class Filme implements Serializable {
     
     public void setPrecoIngresso(double precoIngresso) {
         if (precoIngresso <= 0.00)
-            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_PRECO_INGRESSO_NEGATIVO);
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_PRECO_INGRESSO_NULO_OU_NEGATIVO);
         this.precoIngresso = precoIngresso;
     }
     
