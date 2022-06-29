@@ -45,7 +45,7 @@ public class FilmeTest {
         
          IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> filme.setPrecoIngresso(-1));
       
-         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_PRECO_INGRESSO_NEGATIVO));
+         assertTrue(excecao.getMessage().contains(new Mensagens().EXCECAO_MENSAGEM_PRECO_INGRESSO_NULO_OU_NEGATIVO));
     }
     
     //testes dos getters
