@@ -50,6 +50,7 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
         btnPequisar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableFilmes = new javax.swing.JTable();
 
@@ -108,13 +109,22 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
             }
         });
 
+        btnAtualizar.setText("ATUALIZAR");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCadastrar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -122,6 +132,8 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCadastrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAtualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -267,6 +279,29 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_inputPesquisaFocusLost
 
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        int indiceLinha = tableFilmes.getSelectedRow();
+          
+          if (indiceLinha != -1) {        
+                Filme filme = new Filme();
+                
+                filme.setId((Long) tableFilmes.getValueAt(indiceLinha, 0));
+                filme.setTitulo((String) tableFilmes.getValueAt(indiceLinha, 1));
+                filme.setQtdAssentos((int) tableFilmes.getValueAt(indiceLinha, 2));
+                filme.setPrecoIngresso((double) tableFilmes.getValueAt(indiceLinha, 3));
+                
+                JDialogAtualizarFilme dialogAtualizarFilme = new JDialogAtualizarFilme(this, true);
+                dialogAtualizarFilme.carregarFilmeParaAtualizar(filme);
+                dialogAtualizarFilme.setVisible(true);
+                
+                try {
+                    carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+          }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +338,7 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnPequisar;
     private javax.swing.JComboBox<String> comboTipoPesquisa;
