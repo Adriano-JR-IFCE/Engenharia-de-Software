@@ -60,7 +60,7 @@ public class FilmeController {
     }
     
     public Filme filme(Long id) {
-        if (id < 0)
+        if (id <= 0)
             throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_ID_INVALIDO);
         
         Filme filme = gerenciador.find(Filme.class, id);
