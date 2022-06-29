@@ -69,7 +69,7 @@ public class FilmeController {
     }
     
     public List<Filme> todosFilmes(int qtdAssentos) {
-        String jpql = "select f from Filme f where f.QtdAssentos =" + qtdAssentos;
+        String jpql = "select f from Filme f where f.qtdAssentos =" + qtdAssentos;
         
         TypedQuery typedQuery = gerenciador.createQuery(jpql, Filme.class);
         List<Filme> filmes = typedQuery.getResultList();

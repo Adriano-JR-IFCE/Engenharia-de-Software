@@ -222,6 +222,15 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 break;
+            //Quantidade de Assentos
+            case 2:
+                try {
+                    int qtdAssentos = Integer.parseInt(entradaInputPesquisa);
+                    carregarDadosTabelaFilmes(new FilmeController().todosFilmes(qtdAssentos));
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
         }
     }//GEN-LAST:event_btnPequisarActionPerformed
 
