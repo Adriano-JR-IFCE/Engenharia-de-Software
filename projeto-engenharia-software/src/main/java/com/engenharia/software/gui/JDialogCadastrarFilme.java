@@ -4,6 +4,10 @@
  */
 package com.engenharia.software.gui;
 
+import com.engenharia.software.controller.FilmeController;
+import com.engenharia.software.model.Filme;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lobonegro
@@ -18,7 +22,7 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
         initComponents();
         
         //centralizar na tela
-        setLocationRelativeTo(null);
+            setLocationRelativeTo(null);
     }
 
     /**
@@ -51,6 +55,11 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
         jLabel3.setText("Preco Ingresso:");
 
         btnSalvar.setText("SALVAR");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +76,11 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
 
         inputQtdAssentos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inputQtdAssentos.setText("0");
+        inputQtdAssentos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputQtdAssentosFocusGained(evt);
+            }
+        });
         inputQtdAssentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputQtdAssentosActionPerformed(evt);
@@ -75,6 +89,16 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
 
         inputPrecoIngresso.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inputPrecoIngresso.setText("0.00");
+        inputPrecoIngresso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputPrecoIngressoFocusGained(evt);
+            }
+        });
+        inputPrecoIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPrecoIngressoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,10 +116,9 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputQtdAssentos)
-                            .addComponent(inputPrecoIngresso))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(inputPrecoIngresso))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
@@ -151,6 +174,44 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String entradaInputTitulo = inputTitulo.getText();
+        String entradaInputQtdAssentos = inputQtdAssentos.getText();
+        String entradaInputPrecoIngresso = inputPrecoIngresso.getText();
+        
+        try {
+            Filme filme = new Filme();
+            
+            filme.setTitulo(entradaInputTitulo);
+            filme.setQtdAssentos(Integer.parseInt(entradaInputQtdAssentos));
+            filme.setPrecoIngresso(Double.parseDouble(entradaInputPrecoIngresso));
+            
+            System.out.println("[LOG] Dados do filme:\n" + filme);
+            
+            FilmeController filmeController = new FilmeController();
+            
+            filmeController.salvarFilme(filme);
+            
+            filmeController.fechar();
+            
+            JOptionPane.showMessageDialog(this, "Filme cadastrado com sucesso! ", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void inputQtdAssentosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputQtdAssentosFocusGained
+        inputQtdAssentos.setText("");
+    }//GEN-LAST:event_inputQtdAssentosFocusGained
+
+    private void inputPrecoIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPrecoIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPrecoIngressoActionPerformed
+
+    private void inputPrecoIngressoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPrecoIngressoFocusGained
+        inputPrecoIngresso.setText("");
+    }//GEN-LAST:event_inputPrecoIngressoFocusGained
 
     /**
      * @param args the command line arguments
