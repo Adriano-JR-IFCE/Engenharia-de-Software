@@ -1,6 +1,9 @@
 package com.engenharia.software.gui;
 
+import com.engenharia.software.auxiliar.GeradorComprovanteVenda;
+import com.engenharia.software.controller.FilmeController;
 import com.engenharia.software.controller.VendaController;
+import com.engenharia.software.model.Filme;
 import com.engenharia.software.model.Venda;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -108,6 +111,11 @@ public class JDialogComprovante extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tableVendas);
 
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,6 +195,25 @@ public class JDialogComprovante extends javax.swing.JDialog {
     private void inputDataVendaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputDataVendaFocusGained
         inputDataVenda.setText("");
     }//GEN-LAST:event_inputDataVendaFocusGained
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        VendaController vendaController = new VendaController();
+        int indiceLinha = tableVendas.getSelectedRow();
+        
+        if (indiceLinha != -1) {
+            try {
+                Long id = (Long) tableVendas.getValueAt(indiceLinha, 0);
+                Venda venda = vendaController.venda(id);
+                
+                if (venda != null) {                    
+                    GeradorComprovanteVenda geradorComprovanteVenda = new GeradorComprovanteVenda();
+                    geradorComprovanteVenda.gerar(venda);
+                }
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this, "ERROR: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments

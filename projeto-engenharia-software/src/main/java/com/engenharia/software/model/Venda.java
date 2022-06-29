@@ -3,6 +3,7 @@ package com.engenharia.software.model;
 import java.util.Date;
 import com.engenharia.software.auxiliar.Mensagens;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -75,12 +76,16 @@ public class Venda implements Serializable {
     //outros metodos
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = sdf.format(getDataVenda());
+        
         return 
                 String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %.2f%n",
                         getId(),
                         getTitulo(),
                         getQtdAssentos(),
-                        getTotal()
+                        getTotal(),
+                        dataFormatada
                 );
     }
 

@@ -4,6 +4,7 @@
  */
 package com.engenharia.software.gui;
 
+import com.engenharia.software.auxiliar.GeradorComprovanteVenda;
 import com.engenharia.software.controller.FilmeController;
 import com.engenharia.software.controller.VendaController;
 import com.engenharia.software.model.Filme;
@@ -219,6 +220,9 @@ public class JDialogVender extends javax.swing.JDialog {
                   filmeController.atualizarFilme(filme);
                   
                   JOptionPane.showMessageDialog(this, "Venda feita com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                  
+                  GeradorComprovanteVenda geradorComprovanteVenda = new GeradorComprovanteVenda();
+                  geradorComprovanteVenda.gerar(venda);
                   
                   dispose();
               } else {
