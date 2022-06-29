@@ -196,6 +196,8 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
             filmeController.fechar();
             
             JOptionPane.showMessageDialog(this, "Filme cadastrado com sucesso! ", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            
+            limparCampos();
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -266,4 +268,11 @@ public class JDialogCadastrarFilme extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
+    //outros metodos
+    private void limparCampos() {
+        inputTitulo.setText("");
+        inputQtdAssentos.setText("0");
+        inputPrecoIngresso.setText("0.00");
+    }
 }
