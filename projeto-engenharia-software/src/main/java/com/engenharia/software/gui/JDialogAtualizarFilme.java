@@ -47,7 +47,7 @@ public class JDialogAtualizarFilme extends javax.swing.JDialog {
         inputId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Filme");
+        setTitle("Atualizar Filme");
         setResizable(false);
 
         jLabel1.setText("Titulo:");
@@ -230,7 +230,7 @@ public class JDialogAtualizarFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_inputPrecoIngressoActionPerformed
 
     private void inputPrecoIngressoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPrecoIngressoFocusGained
-        
+            
     }//GEN-LAST:event_inputPrecoIngressoFocusGained
 
     /**
