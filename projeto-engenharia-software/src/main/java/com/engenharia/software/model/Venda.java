@@ -80,7 +80,7 @@ public class Venda implements Serializable {
         String dataFormatada = sdf.format(getDataVenda());
         
         return 
-                String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %.2f%n",
+                String.format("ID: %d%nFilme: %s%nQtd. Assentos: %d%nTotal: %.2f%nData Venda: %s%n",
                         getId(),
                         getTitulo(),
                         getQtdAssentos(),

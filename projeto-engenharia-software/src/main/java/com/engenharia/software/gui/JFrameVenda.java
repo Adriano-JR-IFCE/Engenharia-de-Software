@@ -229,7 +229,7 @@ public class JFrameVenda extends javax.swing.JFrame {
                    dialogVender.carregarFilmeParaVender(filme);
                    dialogVender.setVisible(true);
                     
-                   carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+                   carregarDadosTabelaFilmes(new FilmeController().todosFilmesComAssentosDisponiveis());
                 }
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(this, "ERROR: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -247,7 +247,7 @@ public class JFrameVenda extends javax.swing.JFrame {
         if (conteudoInputPesquisa.isEmpty()) {
             //carrega todos os filmes para a tabela
             try {
-                carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+                carregarDadosTabelaFilmes(new FilmeController().todosFilmesComAssentosDisponiveis());
             } catch (Exception exception) {
                 JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
