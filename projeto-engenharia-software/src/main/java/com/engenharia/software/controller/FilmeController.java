@@ -1,5 +1,6 @@
 package com.engenharia.software.controller;
 
+import com.engenharia.software.auxiliar.Mensagens;
 import com.engenharia.software.model.Filme;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -59,6 +60,9 @@ public class FilmeController {
     }
     
     public Filme filme(Long id) {
+        if (id < 0)
+            throw new IllegalArgumentException(new Mensagens().EXCECAO_MENSAGEM_ID_INVALIDO);
+        
         Filme filme = gerenciador.find(Filme.class, id);
        
         return filme;
