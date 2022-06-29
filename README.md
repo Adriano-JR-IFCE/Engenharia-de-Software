@@ -1,6 +1,13 @@
 # Engenharia de Software
  Repositório com o objetivo de manter acesso ao versionamento do projeto proposto pela professora Cynthia Pinheiro.
 
+## Instrucoes Para Executar o Programa
+<ol>
+ <li>Faca o download do arquivo projeto-engenharia-software.zip</li>
+ <li>Descompacte o arquivo projeto-engenharia-software.zip</li>
+ <li>Execute o arquivo projeto-engenharia-software.jar</li>
+</ol>
+
 ## Softwares do Ambiente de Desenvolvimento
 <ul>
  <li>IDE: Netbeans IDE 13</li>
