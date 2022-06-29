@@ -4,6 +4,13 @@
  */
 package com.engenharia.software.gui;
 
+import com.engenharia.software.controller.FilmeController;
+import com.engenharia.software.controller.VendaController;
+import com.engenharia.software.model.Filme;
+import com.engenharia.software.model.Venda;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lobonegro
@@ -16,6 +23,9 @@ public class JDialogVender extends javax.swing.JDialog {
     public JDialogVender(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        //apresenta no centro da tela
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -42,6 +52,7 @@ public class JDialogVender extends javax.swing.JDialog {
         inputNumeroIngressos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Vender");
 
         jLabel1.setText("ID:");
 
@@ -54,6 +65,11 @@ public class JDialogVender extends javax.swing.JDialog {
         jLabel5.setText("Numero de Ingressos:");
 
         btnVender.setText("VENDER");
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +95,11 @@ public class JDialogVender extends javax.swing.JDialog {
 
         inputNumeroIngressos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inputNumeroIngressos.setText("0");
+        inputNumeroIngressos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputNumeroIngressosFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,7 +117,7 @@ public class JDialogVender extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNumeroIngressos, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                                .addComponent(inputNumeroIngressos))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +134,8 @@ public class JDialogVender extends javax.swing.JDialog {
                         .addGap(100, 100, 100)
                         .addComponent(btnVender)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)))
+                        .addComponent(btnCancelar)
+                        .addGap(0, 100, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,6 +189,44 @@ public class JDialogVender extends javax.swing.JDialog {
     private void inputPrecoIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPrecoIngressoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPrecoIngressoActionPerformed
+
+    private void inputNumeroIngressosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputNumeroIngressosFocusGained
+        inputNumeroIngressos.setText("");
+    }//GEN-LAST:event_inputNumeroIngressosFocusGained
+
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+       FilmeController filmeController = new FilmeController();
+       Filme filme = filmeController.filme(Long.parseLong(inputId.getText()));
+       
+       if (filme != null) {
+          try {
+              int numeroIngressos = Integer.parseInt(inputNumeroIngressos.getText());
+              
+              if (numeroIngressos > 0 && numeroIngressos <= filme.getQtdAssentos()) {
+                  Venda venda = new Venda();
+                  
+                  venda.setTitulo(filme.getTitulo());
+                  venda.setQtdAssentos(numeroIngressos);
+                  venda.setTotal(numeroIngressos * filme.getPrecoIngresso());
+                  venda.setDataVenda(new Date());
+                  
+                  VendaController vendaController = new VendaController();
+                  
+                  vendaController.salvarVenda(venda);
+                  
+                  filme.setQtdAssentos(filme.getQtdAssentos() - numeroIngressos);
+                  
+                  filmeController.atualizarFilme(filme);
+                  
+                  JOptionPane.showMessageDialog(this, "Venda feita com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+              } else {
+                  JOptionPane.showMessageDialog(this, "Quantidade de ingressos invalida!", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+              }
+          } catch (Exception exception) {
+              JOptionPane.showMessageDialog(this, "Error: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+          }
+       }
+    }//GEN-LAST:event_btnVenderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,4 +285,12 @@ public class JDialogVender extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    //outros metodos
+    public void carregarFilmeParaVender(Filme filme) {
+        inputId.setText(filme.getId().toString());
+        inputTitulo.setText(filme.getTitulo());
+        inputQtdAssentos.setText(filme.getQtdAssentos() + "");
+        inputPrecoIngresso.setText(filme.getPrecoIngresso() + "");
+    }
 }
