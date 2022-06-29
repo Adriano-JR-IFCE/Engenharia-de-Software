@@ -51,6 +51,8 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableFilmes = new javax.swing.JTable();
 
@@ -116,6 +118,20 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
             }
         });
 
+        btnDeletar.setText("DELETAR");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setText("VOLTAR");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -124,7 +140,9 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -134,7 +152,11 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
                 .addComponent(btnCadastrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtualizar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeletar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVoltar)
+                .addContainerGap())
         );
 
         tableFilmes.setModel(new javax.swing.table.DefaultTableModel(
@@ -302,6 +324,35 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
           }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        FilmeController filmeController = new FilmeController();
+        int indiceLinha = tableFilmes.getSelectedRow();
+        
+        if (indiceLinha != -1) {
+            try {
+                Long id = (Long) tableFilmes.getValueAt(indiceLinha, 0);
+                Filme filme = filmeController.filme(id);
+
+                int confirmacao = JOptionPane.showConfirmDialog(this, "Voce realmente deseja deletar o filme?", "Confirmacao", JOptionPane.OK_CANCEL_OPTION);
+
+                if (confirmacao == 0 && filme != null) {
+                    filmeController.removerFilme(filme);
+
+                    JOptionPane.showMessageDialog(this, "Filme deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    
+                   carregarDadosTabelaFilmes(new FilmeController().todosFilmes());
+                }
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(this, "ERROR: " + exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        new JFrameHome().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,7 +391,9 @@ public class JFrameCRUDFilme extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnPequisar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> comboTipoPesquisa;
     private javax.swing.JTextField inputPesquisa;
     private javax.swing.JPanel jPanel1;
