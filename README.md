@@ -7,6 +7,7 @@
  <li>JDK:  OpenJDK 17.0.3</li>
  <li>SO: Ubuntu 20.04</li>
  <li>API de testes: JUNIT 5</li>
+ <li>Dependencia para gerar o PDF: ItextPDF 7.2.2</li>
 </ul>
 
 ## Conteudos Pesquisados - Extras
